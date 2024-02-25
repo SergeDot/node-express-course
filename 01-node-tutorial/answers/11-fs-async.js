@@ -1,32 +1,31 @@
 const fs = require('fs');
 
 const textFileLocation = 'temporary\\fileB.txt';
-const test = 'I am an async that syncs async\'fully.';
-const text = 'If an async is sync\'ed sync\'fully';
-const testText = 'is ain\'t sync\'ing async\'fully if at all';
-let flag = '';
+const text = 'I am an async that syncs async\'fully. If an async is sync\'ed sync\'fully it ain\'t sync\'ing async\'fully if at all\n';
+let flagA = { flag: 'a' };
 
-for (let i = 0; i < 3; i++) {
-  if (i) flag = {flag: 'a'};
-  fs.writeFileSync(
-    textFileLocation, 
-    `${test} ${text} ${testText} #${i + 1}!\n`, 
-    flag,
-    (err, result) => {
-      if (err) {
-        console.log(err);
-        return;
-      };
-      console.log(result);
-    }
-    );
-  };
-
-const fileContent = fs.readFileSync(textFileLocation, 'utf8', (err, result) => {
+fs.writeFile(textFileLocation, `1 ${text}`, (err, result) => {
   if (err) {
     console.log(err);
     return;
   };
-  return result;
+  fs.writeFile(textFileLocation, `2 ${text}`, flagA, (err, result) => {
+    if (err) {
+      console.log(err);
+      return;
+    };
+    fs.writeFile(textFileLocation, `3 ${text}`, flagA, (err, result) => {
+      if (err) {
+        console.log(err);
+        return;
+      };
+      fs.readFile(textFileLocation, 'utf8', (err, result) => {
+        if (err) {
+          console.log(err);
+          return;
+        };
+        console.log(`Reading file:\n${result}`);
+      });
+    });
+  });
 });
-console.log(fileContent);
