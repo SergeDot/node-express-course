@@ -1,0 +1,46 @@
+* {
+  font-family: Arial;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+main {
+  max-width: 70ch;
+}
+
+a {
+  font-size: 16px;
+  color: green
+}
+
+#hand {
+  display: flex;
+  justify-content: space-around;
+}
+
+.card {
+  border: 1px solid #000;
+  border-radius: 5px;
+  font-size: 50px;
+  width: 60px;
+  height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 10px;
+}
+
+#controls {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.control_item {
+  margin: 5px
+}
