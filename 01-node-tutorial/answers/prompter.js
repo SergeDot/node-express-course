@@ -85,9 +85,7 @@ const server = http.createServer((req, res) => {
       } else {
         item = `You are not very talkative. But I will still tell you...${message}`;
       };
-      // if (body["colors"]) {
       color = body["colors"];
-      // };
       // Your code changes would end here
       res.writeHead(303, {
         Location: "/",
