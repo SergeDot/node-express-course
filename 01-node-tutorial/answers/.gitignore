@@ -1,0 +1,7 @@
+# system files
+/node_modules  
+.DS_Store  
+
+# temp files
+/temporary/temp.txt
+/temporary/big.txt

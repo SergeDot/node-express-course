@@ -61,7 +61,7 @@ const form = () => {
   </select>
   <button type="submit">Submit</button>
   </form>
-  ${color ? '<h1>Gotcha!!! Surprise color for you!!! This is your lucky color for today! Want to try again? Click "Submit"</h1>':''}
+  ${color ? '<h1>Gotcha!!! Surprise color for you!!! This is your lucky color for today! Want to try again? Click "Submit"</h1>' : ''}
   <script>
   const dropdown = document.querySelector('select');
   const labelElement = document.querySelector('label');
@@ -99,3 +99,7 @@ const server = http.createServer((req, res) => {
 
 server.listen(3000);
 console.log("The server is listening on port 3000.");
+
+server.on("request", (req) => {
+  console.log("event received: ", req.method, req.url);
+}); 
