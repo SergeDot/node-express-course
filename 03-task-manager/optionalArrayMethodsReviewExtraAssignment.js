@@ -154,6 +154,46 @@ const names = [
   'Amy You'
 ];
 
+const lastNameArray = names.map(name => name.split(/\W+|_+/).slice(-1)).flat();
+console.log(lastNameArray);
+
+const isCorrectFormat = (name) => {
+  return !name.localeCompare(
+    (name.match(/^\w+/) 
+    ? name.match(/^\w+/)[0] 
+    : '') + 
+    ' ' + 
+    (name.match(/\w+$/) 
+    ? name.match(/\w+$/)[0] 
+    : ''))
+};
+
+const capitalize = (word) => {
+  return word.length === 1 
+  ? word.toUpperCase() 
+  : (word[0].toUpperCase() + word.slice(1 - word.length).toLowerCase());
+};
+
+
+const filteredNamesArray =  names.filter(name => isCorrectFormat(name));
+console.log(filteredNamesArray);
+
+const capitalizeNamesArray = names
+  .map(name => name
+      .split(/\b/)
+      .map(word => capitalize(word))
+      .join(''));
+console.log(capitalizeNamesArray);
+
+
+const ultimateNamesFilterMessage = names
+  .filter(name => isCorrectFormat(name) && name.slice(-1) != 'z')
+  .map(name => name
+    .split(/\b/)
+    .map(word => capitalize(word))
+    .join(''))
+  .forEach(name => console.log(`Dear ${name}, sign up!`));
+
 ///////////////////////////////////////////////////////////////////////////////
 //// put your answers above if you wish to do the challenges on your own //////
 ///////////////////////////////////////////////////////////////////////////////
@@ -168,7 +208,7 @@ const names = [
 /////// and maybe also delete or comment-out the remainder of this file! //////
 ///////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
-
+/*
 //////// CHALLENGE: Get everyone's last name
 const everyonesLastName = names.map((name) => {
   // `.map` can transform each element 1:1
@@ -231,7 +271,7 @@ console.log('titledNames', titledNames);
  * are identified by POSITION. As long as a POSITIONAL argument is in the
  * correct POSITION you can give it any name. The best practice is to use
  * the most descriptive and clear names you can, which we've done here.
- */
+ *//*
 const transformWordIntoTitle = (characterInWord, indexOfCharacter) => {
   // We only want to change the FIRST letter of the word to uppercase
   if (indexOfCharacter === 0) {
@@ -268,7 +308,7 @@ const transformWordIntoTitle = (characterInWord, indexOfCharacter) => {
  *
  * Indeed, this would be much faster since we avoid an inner loop, but our goal
  * is to learn, not to go fast!
- */
+ *//*
 const transformStringIntoTitledWords = (wordInString) => {
   const letters = wordInString.split('');
   const titleCaseLetters = letters.map(transformWordIntoTitle);
@@ -286,7 +326,7 @@ const transformStringIntoTitledWords = (wordInString) => {
  *      -> ["Carlos", "Santiago"]
  *        -> "Carlos Santiago"
  * ```
- */
+ *//*
 const transformNameIntoTitleCase = (name) => {
   // We'll use a regex to split the string. ' +' means "one or more spaces."
   // This is good because it'll work for our name "tam  person" where there is
@@ -323,3 +363,4 @@ const result = names
   `);
 
 console.log('result', result);
+*/
