@@ -1,0 +1,15 @@
+1. We use asyncWrapper to keep the DRY principle - Don't Repeat Yourself. It makes the code less bulky and more readable. Besides if I need to change anything I will do it in one place instead of looking for the instances all over the code.
+2. 
+
+const asyncWrapper = require('../middleware/async')
+const {createCustomError} = require('../errors/custom-error')
+
+const getTask = asyncWrapper(async (req, res, next) => {  
+  const { id: taskID } = req.params;  
+  const task = await Task.findOne({ _id: taskID });  
+  if (!task) {  
+    // your code here 
+    return next(createCustomError(`No task with ID : ${taskID}`, 404)); 
+  }  
+  res.status(200).json({ task });  
+});  
