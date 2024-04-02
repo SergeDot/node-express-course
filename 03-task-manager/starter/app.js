@@ -1,23 +1,23 @@
 import express from "express";
 import tasks from './routes/tasks.js';
 import connectDB from './db/connect.js';
+import notFound from './middleware/not-found.js';
+import errorHandlerMiddleware from './middleware/error-handler.js';
 import { config } from 'dotenv';
 
 config();
 
-const port = 3000;
+const port = process.env.PORT || 3000;
 const app = express();
 
 // middleware
+app.use(express.static('./public'));
 app.use(express.json());
 
 //routes
 app.use('/api/v1/tasks', tasks);
-
-// logic
-app.get('/hello', (req, res) => {
-  res.send('Hello CTD');
-});
+app.use(notFound);
+app.use(errorHandlerMiddleware);
 
 (async () => {
   try {
