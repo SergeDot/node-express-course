@@ -11,7 +11,7 @@ const authenticationMiddleware = async (req, res, next) => {
 
   try {
     const { name } = jwt.verify(token, process.env.JWT_SECRET);
-    req.user = name;
+    req.user = { name };
     next();
   } catch (error) {
     throw new UnauthenticatedError(`Token error`, 401);
