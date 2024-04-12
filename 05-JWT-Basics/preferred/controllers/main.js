@@ -8,7 +8,7 @@ const logon = async (req, res) => {
   };
 
   const token = jwt.sign(
-    { name, password },
+    { name },
     process.env.JWT_SECRET,
     { expiresIn: process.env.TOKEN_EXPIRATION }
   );
